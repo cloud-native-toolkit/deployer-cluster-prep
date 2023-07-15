@@ -1,0 +1,2 @@
+resources:
+  - https://github.com/one-touch-provisioning/otp-gitops/setup/argocd-instance?ref=master
