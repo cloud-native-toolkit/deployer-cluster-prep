@@ -1,4 +1,11 @@
 
+#!/bin/bash
+
+# Exit if any of the intermediate steps fail
+set -e
+# set bash debug
+set -x
+
 # install OpenShift GitOps
 oc apply -k https://github.com/cloud-native-toolkit/deployer-cluster-prep//argocd-operator/?ref=main --insecure-skip-tls-verify=true
 while ! oc wait crd applications.argoproj.io --timeout=-1s --for=condition=Established  --insecure-skip-tls-verify=true  2>/dev/null; do sleep 30; done
