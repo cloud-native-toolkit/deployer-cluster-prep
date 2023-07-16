@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - https://github.com/one-touch-provisioning/otp-gitops/setup/argocd-operator?ref=master
 patches:
-  - target:
+  - path: patch-channel.yaml
+    target:
       kind: Subscription
       name: openshift-gitops-operator
-    path: patch-channel.yaml
