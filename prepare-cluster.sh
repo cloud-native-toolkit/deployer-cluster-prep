@@ -20,6 +20,7 @@ while ! oc wait crd pipelines.tekton.dev --timeout=-1s --for=condition=Establish
 while ! oc wait crd pipelineruns.tekton.dev --timeout=-1s --for=condition=Established  --insecure-skip-tls-verify=true  2>/dev/null; do sleep 30; done
 while ! oc wait crd tasks.tekton.dev --timeout=-1s --for=condition=Established  --insecure-skip-tls-verify=true  2>/dev/null; do sleep 30; done
 while ! oc wait --for=condition=ready TektonPipelines/pipeline --timeout=-1s --insecure-skip-tls-verify=true 2>/dev/null; do sleep 30; done
+while ! oc wait --for=condition=Ready TektonAddon/addon  --insecure-skip-tls-verify=true  2>/dev/null; do sleep 10; done
 
 
 # install external secrets operator
