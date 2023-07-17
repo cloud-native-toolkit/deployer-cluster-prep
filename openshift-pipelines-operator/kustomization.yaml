@@ -1,3 +1,2 @@
 resources:
-  - https://github.com/redhat-cop/gitops-catalog/openshift-pipelines-operator/overlays/latest?ref=pipelines-1.9
-  - rbac.yaml
+  - https://github.com/redhat-cop/gitops-catalog/openshift-pipelines-operator/overlays/pipelines-1.9?ref=main
