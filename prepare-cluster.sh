@@ -30,11 +30,10 @@ while ! oc wait crd operatorconfigs.operator.external-secrets.io --timeout=-1s -
 
 # Give default:pipeline SA cluster-admin permissions 
 oc create clusterrolebinding pipeline-clusteradmin-crb --clusterrole=cluster-admin --serviceaccount=default:pipeline --insecure-skip-tls-verify=true
-sleep 5
 
 # Add deployer tekton tasks to cluster in the default namespace
 oc apply -f https://raw.githubusercontent.com/cloud-native-toolkit/deployer-tekton-tasks/main/argocd.yaml --insecure-skip-tls-verify=true
-sleep 5
+while ! oc get Tasks/ibm-pak ; do sleep 5; done
 
 #patch storage class for a default
 oc patch storageclass ocs-storagecluster-cephfs  -p '{"metadata": {"annotations": {"storageclass.kubernetes.io/is-default-class": "true"}}}' || true
