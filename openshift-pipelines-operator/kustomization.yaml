@@ -1,2 +1,2 @@
 resources:
-  - https://github.com/redhat-cop/gitops-catalog/openshift-pipelines-operator/overlays/pipelines-1.9?ref=main
+  - https://github.com/redhat-cop/gitops-catalog/openshift-pipelines-operator/overlays/pipelines-1.10?ref=main
