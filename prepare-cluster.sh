@@ -9,7 +9,7 @@ set -x
 # install OpenShift GitOps
 oc apply -k https://github.com/cloud-native-toolkit/deployer-cluster-prep//argocd-operator/?ref=main --insecure-skip-tls-verify=true
 while ! oc wait crd applications.argoproj.io --timeout=1800s --for=condition=Established  --insecure-skip-tls-verify=true; do sleep 30; done
-while ! oc wait pod --timeout=-1s --for=condition=Ready -l '!job-name' -n openshift-gitops  --insecure-skip-tls-verify=true; do sleep 30; done
+while ! oc wait pod --timeout=1800s --for=condition=Ready -l '!job-name' -n openshift-gitops  --insecure-skip-tls-verify=true; do sleep 30; done
 
 oc apply -k https://github.com/cloud-native-toolkit/deployer-cluster-prep//argocd-instance/?ref=main --insecure-skip-tls-verify=true
 
