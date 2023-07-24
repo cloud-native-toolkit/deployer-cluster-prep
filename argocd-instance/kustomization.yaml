@@ -12,7 +12,7 @@ patchesStrategicMerge:
   - resource-customizations/ocs.yaml
   - resource-customizations/kubevirt.yaml
   - resource-customizations/external-secrets.yaml
-  
+
   # Apps
   - resource-customizations/argocd.yaml
   - resource-customizations/rhacm.yaml
