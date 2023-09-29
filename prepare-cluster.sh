@@ -15,7 +15,7 @@ while ! oc wait deployment/kam -n openshift-gitops --timeout=1800s --for=conditi
 oc apply -k https://github.com/cloud-native-toolkit/deployer-cluster-prep//argocd-instance/?ref=main --insecure-skip-tls-verify=true
 
 # install OpenShift Pipelines
-oc apply -k https://github.com/cloud-native-toolkit/deployer-cluster-prep//openshift-pipelines-operator/?ref=main --insecure-skip-tls-verify=true
+oc apply -k https://github.com/cloud-native-toolkit/deployer-cluster-prep//openshift-pipelines-operator-latest/?ref=main --insecure-skip-tls-verify=true
 while ! oc wait crd pipelines.tekton.dev --timeout=1800s --for=condition=Established  --insecure-skip-tls-verify=true; do sleep 30; done
 while ! oc wait crd pipelineruns.tekton.dev --timeout=1800s --for=condition=Established  --insecure-skip-tls-verify=true; do sleep 30; done
 while ! oc wait crd tasks.tekton.dev --timeout=1800s --for=condition=Established  --insecure-skip-tls-verify=true; do sleep 30; done
