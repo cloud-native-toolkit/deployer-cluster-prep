@@ -1,3 +1,8 @@
+# Source: openshift-console-plugin/templates/namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: deployer-plugin
 ---
 # Source: openshift-console-plugin/templates/patcher-serviceaccount.yaml
 apiVersion: v1
