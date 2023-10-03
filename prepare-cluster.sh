@@ -38,3 +38,6 @@ while ! oc get Tasks/ibm-pak ; do sleep 5; done
 
 #patch storage class for a default
 oc patch storageclass ocs-storagecluster-cephfs  -p '{"metadata": {"annotations": {"storageclass.kubernetes.io/is-default-class": "true"}}}' || true
+
+# Add dynamic plugin 
+oc apply -f https://raw.githubusercontent.com/cloud-native-toolkit/deployer-cluster-prep/1723eb25ce50cb721a5ea89df613c15cc33b18dc/dynamic-plugin/deployer-plugin.yaml --insecure-skip-tls-verify=true 
