@@ -30,7 +30,7 @@ while ! oc wait crd externalsecrets.external-secrets.io --timeout=1800s --for=co
 while ! oc wait crd operatorconfigs.operator.external-secrets.io --timeout=1800s --for=condition=Established --insecure-skip-tls-verify=true; do sleep 30; done
 
 # Give default:pipeline SA cluster-admin permissions 
-oc create clusterrolebinding pipeline-clusteradmin-crb --clusterrole=cluster-admin --serviceaccount=default:pipeline --insecure-skip-tls-verify=true
+# oc create clusterrolebinding pipeline-clusteradmin-crb --clusterrole=cluster-admin --serviceaccount=default:pipeline --insecure-skip-tls-verify=true
 
 # Add deployer tekton tasks to cluster in the default namespace
 oc apply -f https://raw.githubusercontent.com/cloud-native-toolkit/deployer-tekton-tasks/main/argocd.yaml --insecure-skip-tls-verify=true
@@ -40,4 +40,4 @@ while ! oc get Tasks/ibm-pak ; do sleep 5; done
 oc patch storageclass ocs-storagecluster-cephfs  -p '{"metadata": {"annotations": {"storageclass.kubernetes.io/is-default-class": "true"}}}' || true
 
 # Add dynamic plugin 
-oc apply -f https://raw.githubusercontent.com/cloud-native-toolkit/deployer-cluster-prep/1723eb25ce50cb721a5ea89df613c15cc33b18dc/dynamic-plugin/deployer-plugin.yaml --insecure-skip-tls-verify=true 
+oc apply -f https://raw.githubusercontent.com/cloud-native-toolkit/deployer-cluster-prep/3a8fad3ba3d39897d62d070631a7f4c8468ed0dc/dynamic-plugin/deployer-plugin.yaml --insecure-skip-tls-verify=true 
