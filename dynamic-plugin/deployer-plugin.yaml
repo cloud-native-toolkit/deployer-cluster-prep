@@ -1,3 +1,10 @@
+---
+# Source: openshift-console-plugin/templates/createnamespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: deployer-plugin
+---
 # Source: openshift-console-plugin/templates/patcher-serviceaccount.yaml
 apiVersion: v1
 kind: ServiceAccount
@@ -29,7 +36,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: deployer-plugin
-  namespace: default
+  namespace: deployer-plugin
   labels:
     helm.sh/chart: openshift-console-plugin-0.1.0
     app: deployer-plugin
@@ -59,7 +66,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: deployer-plugin-patcher
-  namespace: default
+  namespace: deployer-plugin
   labels:
     helm.sh/chart: openshift-console-plugin-0.1.0
     app: deployer-plugin
@@ -77,7 +84,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: deployer-plugin-patcher
-  namespace: default
+  namespace: deployer-plugin
   labels:
     helm.sh/chart: openshift-console-plugin-0.1.0
     app: deployer-plugin
@@ -92,7 +99,7 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: deployer-plugin-patcher
-    namespace: default
+    namespace: deployer-plugin
 ---
 # Source: openshift-console-plugin/templates/service.yaml
 apiVersion: v1
@@ -101,7 +108,7 @@ metadata:
   annotations:
     service.alpha.openshift.io/serving-cert-secret-name: deployer-plugin-cert
   name: deployer-plugin
-  namespace: default
+  namespace: deployer-plugin
   labels:
     helm.sh/chart: openshift-console-plugin-0.1.0
     app: deployer-plugin
@@ -128,7 +135,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: deployer-plugin
-  namespace: default
+  namespace: deployer-plugin
   labels:
     helm.sh/chart: openshift-console-plugin-0.1.0
     app: deployer-plugin
@@ -136,7 +143,7 @@ metadata:
     app.kubernetes.io/instance: deployer-plugin
     app.kubernetes.io/part-of: deployer-plugin
     app.kubernetes.io/managed-by: Helm
-    app.openshift.io/runtime-namespace: default
+    app.openshift.io/runtime-namespace: deployer-plugin
 spec:
   replicas: 2
   selector:
@@ -205,7 +212,7 @@ apiVersion: console.openshift.io/v1
 kind: ConsolePlugin
 metadata:
   name: deployer-plugin
-  namespace: default
+  namespace: deployer-plugin
   labels:
     helm.sh/chart: openshift-console-plugin-0.1.0
     app: deployer-plugin
@@ -221,7 +228,7 @@ spec:
     type: Service
     service:
       name: deployer-plugin
-      namespace: default
+      namespace: deployer-plugin
       port: 9443
       basePath: /
 ---
@@ -230,7 +237,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: deployer-plugin-patcher
-  namespace: default
+  namespace: deployer-plugin
   labels:
     helm.sh/chart: openshift-console-plugin-0.1.0
     app: deployer-plugin
